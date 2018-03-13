@@ -11,7 +11,7 @@ package Dynamic_Programming;
    For example, given the array [-2,1,-3,4,-1,2,1,-5,4],
    the contiguous subarray [4,-1,2,1] has the largest sum = 6.
  */
-public class MaximumSubArray {
+public class MaximumSubarray {
     public int maxSubArray(int[] nums) {
         /*
         dp[i]是子序列为nums[i]的最大子序列和。

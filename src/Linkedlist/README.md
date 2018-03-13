@@ -1,9 +1,17 @@
+> 简单点：遍历，
+>
+> 难点：快，慢指针遍历
+>
+> 更难点：快慢指针遍历 +　链表逆序
+
 ## 重点题目
 *建议重刷*
 - reverse-linked-list-ii
 - linked_list_cycle, linked_list_cycle_ii
 - copy_list_with-random-pointer
 - insertion-sort-list
+- DeleteNodeInALinkedList (简单到你完全想不到)
+- PalindromeLinkedList (快慢指针遍历 +　链表逆序)
 
 ### merge two sorted list：
 - 先处理边界问题，极端情况有利于提高runtime

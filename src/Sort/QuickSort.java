@@ -5,21 +5,96 @@ import java.util.Stack;
 /**
  * Created by yuan on 2018/2/19.
  */
-public class QuickSort {
+public class QuickSort <T> {
     static int partition(int[] nums, int left, int right) {
-        int tmp = nums[left];
+        /**
+         * 从小到大的排序：将大于pivot的数往后移，将小于pivot的数往前移
+         */
+        int pivot = nums[left];
         while (left < right) {
-            while (left < right && nums[right] > tmp)
+            while (left < right && nums[right] >= pivot) // skip nums[i] that equals pivot
+                right--;
+            nums[left] = nums[right];
+            while (left < right && nums[left] <= pivot) // skip nums[i] that equals pivot
+                left++;
+            nums[right] = nums[left];
+        }
+
+        nums[left] = pivot;
+        return left;
+
+//        // Init pivot, better to be random
+//        int pivot = nums[left];
+//
+//        // Begin partition
+//        while (left < right) {
+//            while (left < right && nums[right] >= pivot) { // skip nums[i] that equals pivot
+//                right--;
+//            }
+//            nums[left] = nums[right];
+//            while (left < right && nums[left] <= pivot) { // skip nums[i] that equals pivot
+//                left++;
+//            }
+//            nums[right] = nums[left];
+//        }
+//
+//        // Recover pivot to array
+//        nums[left] = pivot;
+//        return left;
+
+        /*
+        // 虽然更容易理解，但时间复杂度略高
+        int pivot = nums[right];
+        int preL = left, preR = right;
+        while (left < right) {
+            while (nums[left] < pivot)
+                left ++;
+            while (nums[right] > pivot)
+                right --;
+            if (left < right) {
+                int tmp = nums[left];
+                nums[left] = nums[right];
+                nums[right] = tmp;
+            }
+        }
+        return right;*/
+    }
+
+    static int partition_reverse(int[] nums, int left, int right) {
+        /**
+         * 从大到小的排序：将小于pivot的数往后移，将大于pivot的数往前移
+         */
+
+        int pivot = nums[left];
+        while (left < right) {
+            while (left < right && nums[right] <= pivot)
                 right --;
             nums[left] = nums[right];
-
-            while (left < right && nums[left] < tmp)
+            while (left < right && nums[left] >= pivot)
                 left ++;
             nums[right] = nums[left];
         }
-        nums[left] = tmp;
 
+        nums[left] = pivot;
         return left;
+
+        /*
+        // 虽然更容易理解，但时间复杂度略高
+        int pivot = nums[(left + right) / 2];
+        int preL = left, preR = right;
+        while (left < right) {
+            while (nums[left] > pivot)
+                left ++;
+            while (nums[right] < pivot)
+                right --;
+            if (left < right) {
+                int tmp = nums[left];
+                nums[left] = nums[right];
+                nums[right] = tmp;
+            }
+        }
+        return right;
+        */
     }
 
     static void quickSortRecursive(int[] nums, int left, int right) {
@@ -29,6 +104,8 @@ public class QuickSort {
         quickSortRecursive(nums, left, middle - 1);
         quickSortRecursive(nums, middle + 1, right);
     }
+
+
 
     static void quickSortIteration(int[] nums) {
         int middle = 0, left = 0, right = 0;
@@ -61,8 +138,8 @@ public class QuickSort {
     public static void main(String[] args) {
         int[] nums = {7, 4, 3, 1, 9, 8, 6, 5};
         printArray(nums);
-//        quickSortRecursive(nums, 0, nums.length - 1);
-        quickSortIteration(nums);
+        quickSortRecursive(nums, 0, nums.length - 1);
+//        quickSortIteration(nums);
         printArray(nums);
 
     }

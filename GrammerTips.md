@@ -31,6 +31,7 @@
 取出队列第一个元素
 - *E* remove()
 取出队列第一个元素
+- *boolean* isEmpty()
 ## String
 - *char* charAt(int index)
 访问第index个字符
@@ -83,3 +84,17 @@ int[] iarray = iList.toArray(new Integer[iList.size()]);  // new int[iList.size(
 - *String*  Arrays.toString(short[] a)
 - *String*  Arrays.toString([] a)
 - *String*  Arrays.toString([] a)
+
+
+# 复制操作
+## 复制ArrayList
+```java
+ArrayList<Integer> is = new ArrayList<Integer>(){{
+                            add(1);
+                            add(1);
+                            add(1);
+                            add(1);
+                         
+                         }};
+ArrayList<Integer> iis = new ArrayList<>(is);
+```

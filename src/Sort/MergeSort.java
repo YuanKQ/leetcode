@@ -47,5 +47,6 @@ public class MergeSort {
         new MergeSort().mergeSort(array);
         for (int a: array)
             System.out.println(a);
+
     }
 }

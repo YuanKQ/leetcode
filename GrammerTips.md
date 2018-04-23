@@ -98,3 +98,8 @@ ArrayList<Integer> is = new ArrayList<Integer>(){{
                          }};
 ArrayList<Integer> iis = new ArrayList<>(is);
 ```
+# 包装类
+```java
+Integer iatom = new Integer(1);
+int i = iatom.intValue();
+```

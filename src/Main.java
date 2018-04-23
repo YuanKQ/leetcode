@@ -7,28 +7,74 @@
  *
  ******************************/
 
-import java.util.BitSet;
-import java.util.HashMap;
-import java.util.Scanner;
-import java.util.regex.Pattern;
+import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 
 public class Main {
-
-    public static void main(String[] args) {
-        int [] array = new int [] {1,2,3,22,0,3};
-        BitSet bitSet  = new BitSet(6);
-        //将数组内容组bitmap
-        for(int i=0;i<array.length;i++)
-        {
-            bitSet.set(array[i], true);
+    Queue<Integer> data = new LinkedList<>();
+    Random r = new Random();
+    public void consume() throws InterruptedException {
+        synchronized (data){
+            while (data.isEmpty()) {
+                data.wait();
+            }
+            System.out.println("consume: " + data.poll() + "\tdata.size:" + data.size());
+//            data.notifyAll(); // 通知生产者
         }
-        System.out.println(bitSet.size());
-        System.out.println(bitSet.get(3));
-        System.out.println(bitSet.get(22));
-        String.valueOf(11111).toCharArray();
-        System.out.println(10^3);
-        String nums = "12345";
-        System.out.println(nums.substring(2));
+    }
+
+    public void produce() throws InterruptedException {
+        synchronized (data){
+//            while (data.size() == 10){
+//                System.out.println();
+//                data.wait();
+//            }
+            Integer rn = new Integer(r.nextInt(10));
+            data.offer(rn);
+            System.out.println("produce: " + rn + "\tdata.size:" + data.size());
+            data.notifyAll();
+        }
+    }
+
+    class Consumer implements Runnable{
+        @Override
+        public void run() {
+            try {
+                while (!Thread.interrupted())
+                    consume();
+            } catch (InterruptedException e) {
+                System.out.println("Exception in Consumer.");
+            }
+        }
+
+
+    }
+
+    class Producer implements Runnable{
+        @Override
+        public void run() {
+            try {
+                while (!Thread.interrupted())
+                    produce();
+            } catch (InterruptedException e) {
+                System.out.println("Exception in Producer.");
+            }
+        }
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        ExecutorService es = Executors.newCachedThreadPool();
+        Main m = new Main();
+        Producer p = m.new Producer();
+        Consumer c = m.new Consumer();
+        int repeat = 100;
+        es.execute(p);
+        es.execute(c);
+        while (repeat -- >= 0)
+           TimeUnit.MILLISECONDS.sleep(100);
+        es.shutdown();
     }
 }

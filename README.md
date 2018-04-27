@@ -17,3 +17,7 @@ Some solutions to Linkedlist and Stack&Queue are written in Python, the rest are
 - 链表的问题归根结底是指针问题
   - 单指针
   - 双指针（一快一慢，以前一后）
+  
+- 二叉搜索树插入新数据的平均时间为 `O(logn)`
+
+- 可以PriorityQueue实现大根堆小根堆

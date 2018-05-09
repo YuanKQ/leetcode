@@ -8,7 +8,7 @@
  *              best:  O(n)
  *              worst: O(n^2)
  *              space: O(1)
- *
+ *              稳定
  ******************************/
 package Sort;
 

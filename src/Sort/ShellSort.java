@@ -8,7 +8,7 @@
  *              best:   O(nlogn)
  *              worst:  O(n^2) for gap here, different gaps have different worst time complexity
  *              space:  O(1)
- *
+ *              不稳定
  ******************************/
 package Sort;
 

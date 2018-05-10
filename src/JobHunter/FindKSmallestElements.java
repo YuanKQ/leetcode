@@ -84,8 +84,8 @@ public class FindKSmallestElements {
 
     public static void main(String[] args) {
         int[] array = {4, 5, 1, 6, 2, 7, 8, 3};
-//        ArrayList<Integer> rs = new FindKSmallestElements().KHeapSort(array, 4);
-        ArrayList<Integer> rs = new FindKSmallestElements().HeapSort(array);
+        ArrayList<Integer> rs = new FindKSmallestElements().KHeapSort(array, 4);
+//        ArrayList<Integer> rs = new FindKSmallestElements().HeapSort(array);
         for (int item: rs)
             System.out.println(item);
     }

@@ -2,9 +2,19 @@ package Sort;
 
 import java.util.Stack;
 
-/**
- * Created by yuan on 2018/2/19.
- */
+/******************************
+ * User: yuan
+ * Date: 18-5-9 上午10:05
+ * Email: kq_yuan@outlook.com
+ *
+ * Description: 希尔排序
+ *              avg:    O(nlogn)
+ *              best:   O(nlogn)
+ *              worst:  O(n^2)
+ *              space:  O(1)
+ *              不稳定
+ ******************************/
+
 public class QuickSort <T> {
     static int partition(int[] nums, int left, int right) {
         /**
@@ -66,7 +76,7 @@ public class QuickSort <T> {
          */
 
         int pivot = nums[left];
-        while (left < right) {
+        while (left < right) {  // 注意循环结束的条件
             while (left < right && nums[right] <= pivot)
                 right --;
             nums[left] = nums[right];
